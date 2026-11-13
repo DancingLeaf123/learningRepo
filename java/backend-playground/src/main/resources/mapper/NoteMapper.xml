@@ -5,4 +5,10 @@
     <select id="selectAll" resultType="com.learning.backend_playground.entity.Note">
         SELECT id, title, content, created_at FROM note ORDER BY id
     </select>
+
+    <select id="selectById" resultType="com.learning.backend_playground.entity.Note">
+        SELECT id, title, content, created_at
+        FROM note
+        WHERE id = #{id}
+    </select>
 </mapper>

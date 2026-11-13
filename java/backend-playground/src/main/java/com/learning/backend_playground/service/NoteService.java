@@ -5,6 +5,7 @@ import com.learning.backend_playground.mapper.NoteMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NoteService {
@@ -17,5 +18,9 @@ public class NoteService {
 
     public List<Note> listAll() {
         return noteMapper.selectAll();
+    }
+
+    public Optional<Note> findById(final Long id){
+        return Optional.ofNullable(noteMapper.selectById(id));
     }
 }
