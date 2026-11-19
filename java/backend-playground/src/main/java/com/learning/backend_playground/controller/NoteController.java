@@ -1,13 +1,19 @@
 package com.learning.backend_playground.controller;
 
 import com.learning.backend_playground.common.Result;
+import com.learning.backend_playground.dto.NoteCreateRequest;
 import com.learning.backend_playground.dto.NoteVO;
 import com.learning.backend_playground.entity.Note;
 import com.learning.backend_playground.service.NoteService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -42,4 +48,11 @@ public class NoteController {
                 NOTE_NOT_FOUND_MESSAGE + ": " + id
             ));
     }
+
+    @PostMapping
+    public Result<NoteVO> create(
+        @Valid @RequestBody final NoteCreateRequest request){
+            final NoteVO created = noteService.create(request);
+            return Result.success(created);
+        }
 }

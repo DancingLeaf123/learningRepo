@@ -11,4 +11,9 @@
         FROM note
         WHERE id = #{id}
     </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO note (title, content)
+        VALUES (#{title}, #{content})
+    </insert>
 </mapper>

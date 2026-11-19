@@ -13,4 +13,12 @@ public interface NoteMapper {
     List<Note> selectAll();
 
     Note selectById(@Param("id") Long id);
+
+      /**
+   * Inserts a note row. On success, {@link Note#getId()} is set from generated keys.
+   *
+   * @param note row to insert; title required, id and createdAt ignored by SQL
+   * @return number of rows affected
+   */
+    int insert(Note note);
 }
