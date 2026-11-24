@@ -17,6 +17,8 @@ public class NoteVO {
 
     private LocalDateTime createdAt;
 
+    private String tag;
+
     /**
      * Builds a view object from a persistence row.
      *
@@ -29,6 +31,7 @@ public class NoteVO {
         view.title = note.getTitle();
         view.content = note.getContent();
         view.createdAt = note.getCreatedAt();
+        view.tag = note.getTag();
         return view;
     }
 
@@ -46,5 +49,9 @@ public class NoteVO {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public String getTag() {
+        return tag;
     }
 }

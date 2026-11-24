@@ -23,4 +23,6 @@ public interface NoteMapper {
     int insert(Note note);
 
     List<Note> selectByKeyword(@Param("keyword") String keyword);
+
+    int updateTagById(@Param("id") Long id, @Param("tag") String tag);
 }

@@ -41,4 +41,13 @@ public class NoteService {
     public List<Note> searchByKeyword(final String keyword) {
         return noteMapper.selectByKeyword(keyword);
     }
+
+    public Optional<Note> updateTag(Long id, String tag){
+        final Note existing = noteMapper.selectById(id);
+        if(existing == null){
+            return Optional.empty();
+        }
+        noteMapper.updateTagById(id, tag);
+        return Optional.ofNullable(noteMapper.selectById(id));
+    }
 }

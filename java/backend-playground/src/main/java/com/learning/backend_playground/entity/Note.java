@@ -15,6 +15,8 @@ public class Note {
 
     private LocalDateTime createdAt;
 
+    private String tag;
+
     public Long getId() {
         return id;
     }
@@ -45,5 +47,13 @@ public class Note {
 
     public void setCreatedAt(final LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(final String tag) {
+        this.tag = tag;
     }
 }
