@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -32,8 +33,10 @@ public class NoteController {
     }
 
     @GetMapping
-    public Result<List<NoteVO>> listAll() {
-        final List<NoteVO> views = noteService.listAll().stream()
+    public Result<List<NoteVO>> listAll(
+        @RequestParam(required = false) final String keyword)
+    {
+        final List<NoteVO> views = noteService.searchByKeyword(keyword).stream()
                 .map(NoteVO::from)
                 .toList();
         return Result.success(views);

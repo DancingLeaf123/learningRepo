@@ -16,4 +16,15 @@
         INSERT INTO note (title, content)
         VALUES (#{title}, #{content})
     </insert>
+
+    <select id="selectByKeyword" resultType="com.learning.backend_playground.entity.Note">
+        SELECT id, title, content, created_at
+        FROM note
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+        ORDER BY id
+    </select>
 </mapper>

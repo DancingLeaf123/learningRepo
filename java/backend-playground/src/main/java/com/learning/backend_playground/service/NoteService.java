@@ -37,4 +37,8 @@ public class NoteService {
         final Note persisted = noteMapper.selectById(note.getId());
         return NoteVO.from(persisted);
     }
+
+    public List<Note> searchByKeyword(final String keyword) {
+        return noteMapper.selectByKeyword(keyword);
+    }
 }

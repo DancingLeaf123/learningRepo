@@ -21,4 +21,6 @@ public interface NoteMapper {
    * @return number of rows affected
    */
     int insert(Note note);
+
+    List<Note> selectByKeyword(@Param("keyword") String keyword);
 }
