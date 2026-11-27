@@ -6,6 +6,17 @@
         SELECT id, title, content, created_at, tag FROM note ORDER BY id
     </select>
 
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM note
+    </select>
+
+    <select id="selectPage" resultType="com.learning.backend_playground.entity.Note">
+        SELECT id, title, content, created_at, tag
+        FROM note
+        ORDER BY id
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
     <select id="selectById" resultType="com.learning.backend_playground.entity.Note">
         SELECT id, title, content, created_at, tag
         FROM note
@@ -31,4 +42,26 @@
     <update id="updateTagById">
         UPDATE note SET tag = #{tag} WHERE id = #{id}
     </update>
+
+
+    <sql id="noteKeywordWhere">
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </sql>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM note
+        <include refid="noteKeywordWhere"/>
+    </select>
+
+    <select id="selectPageByKeyword" resultType="com.learning.backend_playground.entity.Note">
+        SELECT id, title, content, created_at, tag
+        FROM note
+        <include refid="noteKeywordWhere"/>
+        ORDER BY id
+        LIMIT #{limit} OFFSET #{offset}
+    </select>    
 </mapper>

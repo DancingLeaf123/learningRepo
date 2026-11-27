@@ -3,14 +3,16 @@ package com.learning.backend_playground.mapper;
 import com.learning.backend_playground.entity.Note;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
 
 @Mapper
 public interface NoteMapper {
 
     List<Note> selectAll();
+
+    int countAll();
+
+    List<Note> selectPage(@Param("offset") int offset, @Param("limit") int limit);
 
     Note selectById(@Param("id") Long id);
 
@@ -23,6 +25,13 @@ public interface NoteMapper {
     int insert(Note note);
 
     List<Note> selectByKeyword(@Param("keyword") String keyword);
+
+    int countByKeyword(@Param("keyword") String keyword);
+
+    List<Note> selectPageByKeyword(
+            @Param("keyword") String keyword,
+            @Param("offset") int offset,
+            @Param("limit") int limit);
 
     int updateTagById(@Param("id") Long id, @Param("tag") String tag);
 }
